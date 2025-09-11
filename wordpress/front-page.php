@@ -3,21 +3,31 @@
     <div id="inner_container">
         <div class="imgs_container">
             <div class="img_container">
-                <img src="<?php echo get_template_directory_uri();?>/images/download.jpg">
-</div>
-<div class="img_container">
-                <img src="<?php echo get_template_directory_uri();?>/images/download.jpg">
+                <img src="<?php echo get_template_directory_uri();?>/images/1.jpg" >
             </div>
-<div class="img_container">
-                <img src="<?php echo get_template_directory_uri();?>/images/download.jpg">
+
+
+            <div class="img_container">
+                <img src="<?php echo get_template_directory_uri();?>/images/2.jpg" >
             </div>
-            <div id="overlay">
-                <div id="left_button" class="overlay_button" onclick="onLeftButton()"></div>
-                <div id="right_button" class="overlay_button" onclick="onRightButton()"></div>
+
+
+            <div class="img_container">
+                <img src="<?php echo get_template_directory_uri();?>/images/3.jpg" >
+            </div>
+
+
         </div>
+
+
+        <div id="overlay">
+            <div id="left_button" class="overlay_button" onclick="onLeftButton()"><</div>
+            <div id="right_button" class="overlay_button" onclick="onRightButton()">></div>
+        </div>
+
+
     </div>
 </div>
-
 
 <div style="text-align:center">
     <span class="dot" onclick="currentSlide(1)"></span>
@@ -30,62 +40,63 @@
     <div id="primary" class="content-area">
         <main id="main" class="site-main">
             <section class="hero">
-                hero
-                </section>
-                <section class="services">
-                    <h2>services</h2>
-                    <div class="container">
-                        <div class="services-item">
-                            <?php
+            Hero
+            </section>
+            <section class="services">
+                <h2>Services</h2>
+                <div class="container">
+                    <div class="services-item">
+                        <?php
                             if(is_active_sidebar('services-1')){
                                 dynamic_sidebar('services-1');
                             }
-                            ?>
-                        </div>
-
-                        <div class="services-item">
-                            <?php
+                        ?>
+                    </div>
+                     <div class="services-item">
+                        <?php
                             if(is_active_sidebar('services-2')){
                                 dynamic_sidebar('services-2');
                             }
-                            ?>
-                        </div>
-
-                        <div class="services-item">
-                            <?php
+                        ?>
+                    </div>
+                     <div class="services-item">
+                        <?php
                             if(is_active_sidebar('services-3')){
                                 dynamic_sidebar('services-3');
                             }
-                            ?>
-                        </div>
-
+                        ?>
                     </div>
+                </div>
+
+
                 </section>
-                <section class="home-blog">
-                    <h2>latest news</h2>
-                    <div class="container">
-                        <?php
+            <section class="home-blog">
+                <h2>Latest News</h2>
+                <div class="container">
+                    <?php
                         $args=array(
                             'post_type'=>'post',
                             'posts_per_page'=>5,
                             'category__in'=>array(9,10,15),
-                            'category__noy_in'=>array(1)
+                            'category__not_in'=>array(1)
                         );
 
-                        $postlist=new Wp_Query($args);
 
-                        if($postlist->have_post()):
+                        $postlist=new WP_Query($args);
+
+
+                        if($postlist->have_posts() ):
                             while($postlist->have_posts()):$postlist->the_post();
                             get_template_part('parts/content','latest-news');
                         endwhile;
                         wp_reset_postdata();
                     else:
-                        ?>
-                        <p>nothing to be displayed!</p>
-                        <?php endif;?>
-                        </div>
-                        </section>
-            </main>
+                    ?>
+                    <p>Nothing to be displayed!</p>
+                    <?php endif;?>
+                </div>
+            </section>
+        </main>
     </div>
 </div>
 <?php get_footer();?>
