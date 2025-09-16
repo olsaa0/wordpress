@@ -9,7 +9,7 @@
                         <p>the page you tried to reach does not exist on this site.</p>
                     </header>
                     <div class="error">
-                        <p>how abot doing a research?</p>
+                        <p>how about doing a research?</p>
                         <?php get_search_form();?>
                         <?php
                         the_widget(
